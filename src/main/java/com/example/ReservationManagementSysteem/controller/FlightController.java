@@ -1,7 +1,7 @@
 package com.example.ReservationManagementSysteem.controller;
 
-import com.example.ReservationManagementSysteem.service.Airline;
-import com.example.ReservationManagementSysteem.service.Flight;
+import com.example.ReservationManagementSysteem.model.AirlineEntity;
+import com.example.ReservationManagementSysteem.model.FlightEntity;
 import com.example.ReservationManagementSysteem.service.FlightCodeGenerationService;
 import com.example.ReservationManagementSysteem.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +23,13 @@ public class FlightController {
     private FlightCodeGenerationService flightCodeGenerationService;
 
     @PostMapping
-    public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
-        Airline airline = flight.getAirline();
+    public ResponseEntity<FlightEntity> createFlight(@RequestBody FlightEntity flightEntity) {
+        AirlineEntity airline = flightEntity.getAirline();
         String flightCode = flightCodeGenerationService.generateFlightCode(airline);
-        flight.setCode(flightCode);
-
+        flightEntity.setCode(flightCode);
         // Create the flight using FlightService
-        Flight createdFlight = flightService.createFlight(flight);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdFlight);
+        FlightEntity createdFlightEntity = flightService.createFlight(flightEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFlightEntity);
     }
 }
 

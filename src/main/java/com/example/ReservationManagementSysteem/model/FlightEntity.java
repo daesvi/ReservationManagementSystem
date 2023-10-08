@@ -44,13 +44,14 @@ public class FlightEntity {
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     private List<ReservationEntity> reservations;
 
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "flightEntity", cascade = CascadeType.ALL)
     private List<StopoverEntity> stopovers;
 
     public FlightEntity() {
     }
 
-    public FlightEntity(String code, String origin, String destination, LocalDateTime departureDate, LocalDateTime arrivalDate, double price, int availableSeats, FlightTypeEntity type, AirlineEntity airline) {
+    public FlightEntity(int id, String code, String origin, String destination, LocalDateTime departureDate, LocalDateTime arrivalDate, double price, int availableSeats, FlightTypeEntity type, AirlineEntity airline) {
+        this.id = id;
         this.code = code;
         this.origin = origin;
         this.destination = destination;

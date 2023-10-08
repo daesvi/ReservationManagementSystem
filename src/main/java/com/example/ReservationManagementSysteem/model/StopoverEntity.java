@@ -13,7 +13,7 @@ public class StopoverEntity {
 
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private FlightEntity flight;
+    private FlightEntity flightEntity;
 
     @Column(name = "airport_layover")
     private String airportLayover;
@@ -27,9 +27,9 @@ public class StopoverEntity {
     public StopoverEntity() {
     }
 
-    public StopoverEntity(int id, FlightEntity flight, String airportLayover, Time arrivalTime, Time departureTime) {
+    public StopoverEntity(int id, FlightEntity flightEntity, String airportLayover, Time arrivalTime, Time departureTime) {
         this.id = id;
-        this.flight = flight;
+        this.flightEntity = flightEntity;
         this.airportLayover = airportLayover;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
@@ -44,11 +44,11 @@ public class StopoverEntity {
     }
 
     public FlightEntity getFlight() {
-        return flight;
+        return flightEntity;
     }
 
-    public void setFlight(FlightEntity flight) {
-        this.flight = flight;
+    public void setFlight(FlightEntity flightEntity) {
+        this.flightEntity = flightEntity;
     }
 
     public String getAirportLayover() {

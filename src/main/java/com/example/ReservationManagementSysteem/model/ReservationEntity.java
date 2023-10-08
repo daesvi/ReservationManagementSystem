@@ -131,7 +131,7 @@ public class ReservationEntity {
         return flight;
     }
 
-    public void setFlight(FlightEntity flight) {
-        this.flight = flight;
+    public void setFlight(FlightEntity flightEntity) {
+        this.flight = flightEntity;
     }
 }

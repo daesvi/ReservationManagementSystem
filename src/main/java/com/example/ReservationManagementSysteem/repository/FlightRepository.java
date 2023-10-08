@@ -1,10 +1,14 @@
 package com.example.ReservationManagementSysteem.repository;
 
-import com.example.ReservationManagementSysteem.service.Airline;
-import com.example.ReservationManagementSysteem.service.Flight;
+import com.example.ReservationManagementSysteem.model.AirlineEntity;
+import com.example.ReservationManagementSysteem.model.FlightEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
-public interface FlightRepository extends JpaRepository<Flight, Long> {
-    Long countByAirline(Airline airline);
+@Repository
+public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
+    Long countByAirline(AirlineEntity airline);
+    //Optional<FlightEntity> findByFlightNumber(String flightNumber);
 }

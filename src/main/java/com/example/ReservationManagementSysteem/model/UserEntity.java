@@ -15,8 +15,10 @@ public class UserEntity {
     private String email;
     private String password;
     @OneToMany(mappedBy = "client")
-    private List<ReservationEntity> reservations;
+    private List<ReservationEntity> reservationEntities;
 
+    public UserEntity() {
+    }
 
     public UserEntity(String name, String lastName, String email, String password) {
         this.name = name;

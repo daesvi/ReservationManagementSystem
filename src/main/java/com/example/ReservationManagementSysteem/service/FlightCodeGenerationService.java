@@ -1,5 +1,6 @@
 package com.example.ReservationManagementSysteem.service;
 
+import com.example.ReservationManagementSysteem.model.AirlineEntity;
 import com.example.ReservationManagementSysteem.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ public class FlightCodeGenerationService {
     @Autowired
     private FlightRepository flightRepository;
 
-    public String generateFlightCode(Airline airline) {
+    public String generateFlightCode(AirlineEntity airline) {
         // Gets the airline code (first two letters in upper case)
         String airlineCode = airline.getNameAirline().substring(0, 2).toUpperCase();
 
