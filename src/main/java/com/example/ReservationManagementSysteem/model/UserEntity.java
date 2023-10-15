@@ -1,5 +1,6 @@
 package com.example.ReservationManagementSysteem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String password;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private List<ReservationEntity> reservationEntities;
 
     public UserEntity() {

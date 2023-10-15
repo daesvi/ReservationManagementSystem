@@ -1,8 +1,10 @@
 package com.example.ReservationManagementSysteem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "flights")
@@ -33,12 +35,19 @@ public class FlightEntity {
     @Column(name = "available_seats")
     private int availableSeats;
 
+    @Column(name = "type_id")
+    private Long typeId;
+    @Column(name = "airline_id")
+    private Long airlineId;
+
     @ManyToOne
-    @JoinColumn(name = "flight_type_id")
+    @JoinColumn(name = "flight_type")
+    @JsonIgnore
     private FlightTypeEntity type;
 
     @ManyToOne
-    @JoinColumn(name = "airline_id")
+    @JoinColumn(name = "airline")
+    @JsonIgnore
     private AirlineEntity airline;
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
@@ -50,17 +59,15 @@ public class FlightEntity {
     public FlightEntity() {
     }
 
-    public FlightEntity(int id, String code, String origin, String destination, LocalDateTime departureDate, LocalDateTime arrivalDate, double price, int availableSeats, FlightTypeEntity type, AirlineEntity airline) {
-        this.id = id;
-        this.code = code;
+    public FlightEntity(String origin, String destination, LocalDateTime departureDate, LocalDateTime arrivalDate, double price, int availableSeats, Long typeId, Long airlineId) {
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.price = price;
         this.availableSeats = availableSeats;
-        this.type = type;
-        this.airline = airline;
+        this.typeId = typeId;
+        this.airlineId = airlineId;
     }
 
     public int getId() {
@@ -133,6 +140,22 @@ public class FlightEntity {
 
     public void setType(FlightTypeEntity type) {
         this.type = type;
+    }
+
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
+    }
+
+    public Long getAirlineId() {
+        return airlineId;
+    }
+
+    public void setAirlineId(Long airlineId) {
+        this.airlineId = airlineId;
     }
 
     public AirlineEntity getAirline() {

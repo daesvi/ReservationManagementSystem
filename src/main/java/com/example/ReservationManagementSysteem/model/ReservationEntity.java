@@ -1,5 +1,6 @@
 package com.example.ReservationManagementSysteem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,48 +12,34 @@ public class ReservationEntity {
     @Column(name = "reservation_id")
     private int id;
 
-    @Column(name = "reservation_code")
-    private String code;
-
-    @Column(name = "flight_code")
-    private String flightCode;
-
     @Column(name = "reservation_date")
     private LocalDateTime reservationDate;
 
     @Column(name = "seat_number")
     private int seatNumber;
 
-    @Column(name = "passenger_first_name")
-    private String passengerFirstName;
-
-    @Column(name = "passenger_last_name")
-    private String passengerLastName;
-
     @Column(name = "reservation_state")
     private String state;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity client;
+    @Column(name = "user_id")
+    private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "flight_id")
+    @JoinColumn(name = "user")
+    @JsonIgnore
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "flight")
     private FlightEntity flight;
 
     public ReservationEntity() {
     }
 
-    public ReservationEntity(String code, String flightCode, LocalDateTime reservationDate, int seatNumber, String passengerFirstName, String passengerLastName, String state, UserEntity client, FlightEntity flight) {
-        this.code = code;
-        this.flightCode = flightCode;
-        this.reservationDate = reservationDate;
+    public ReservationEntity(int seatNumber, String state, Long userId) {
         this.seatNumber = seatNumber;
-        this.passengerFirstName = passengerFirstName;
-        this.passengerLastName = passengerLastName;
         this.state = state;
-        this.client = client;
-        this.flight = flight;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -61,22 +48,6 @@ public class ReservationEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getFlightCode() {
-        return flightCode;
-    }
-
-    public void setFlightCode(String flightCode) {
-        this.flightCode = flightCode;
     }
 
     public LocalDateTime getReservationDate() {
@@ -95,22 +66,6 @@ public class ReservationEntity {
         this.seatNumber = seatNumber;
     }
 
-    public String getPassengerFirstName() {
-        return passengerFirstName;
-    }
-
-    public void setPassengerFirstName(String passengerFirstName) {
-        this.passengerFirstName = passengerFirstName;
-    }
-
-    public String getPassengerLastName() {
-        return passengerLastName;
-    }
-
-    public void setPassengerLastName(String passengerLastName) {
-        this.passengerLastName = passengerLastName;
-    }
-
     public String getState() {
         return state;
     }
@@ -119,19 +74,27 @@ public class ReservationEntity {
         this.state = state;
     }
 
-    public UserEntity getClient() {
-        return client;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setClient(UserEntity client) {
-        this.client = client;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public FlightEntity getFlight() {
         return flight;
     }
 
-    public void setFlight(FlightEntity flightEntity) {
-        this.flight = flightEntity;
+    public void setFlight(FlightEntity flight) {
+        this.flight = flight;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

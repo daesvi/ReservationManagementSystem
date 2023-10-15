@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     Long countByAirline(AirlineEntity airline);
-    //Optional<FlightEntity> findByFlightNumber(String flightNumber);
+    FlightEntity findByCode(String flightNumber);
 }

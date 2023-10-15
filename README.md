@@ -1,9 +1,9 @@
 # ReservationManagementSystem
 
-This is a reservation management system project that allows airlines to:
+This is a reservationEntity management system project that allows airlines to:
 1. Manage flights
 2. Search flights by search criteria
-3. Book a flight
+3. Book a flightEntity
 4. Allow search by stopovers on flights
 5. Implement Authentication in the REST API
 
