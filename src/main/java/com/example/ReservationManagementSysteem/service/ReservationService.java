@@ -33,10 +33,14 @@ public class ReservationService {
     }
 
     public ReservationEntity createReservation (ReservationEntity reservationEntity, String code){
+        // Search for the flight from the code provided by the endpoint, and get the available seats
         FlightEntity flight = flightRepository.findByCode(code);
         int availableSeats = flight.getAvailableSeats();
+
+        // Get seat number
+        int seatNumber = reservationEntity.getSeatNumber();
         // Validation for create a reservation
-        if (isFlightValid(reservationEntity, code) && areSeatsAvailable(reservationEntity) && isReservationTimeValid(reservationEntity)) {
+        if (isFlightValid(reservationEntity, code) && areSeatsAvailable(reservationEntity) && isReservationTimeValid(reservationEntity) && isSeatAvailableInFlight(flight, seatNumber)) {
             // Get and set User from ID
             Long userId = reservationEntity.getUserId();
             UserEntity user = userRepository.getById(userId);
@@ -74,19 +78,25 @@ public class ReservationService {
         }
     }
 
+    private boolean isSeatAvailableInFlight(FlightEntity flight, int seatNumber) {
+        // Query the database to check if the seat number is already reserved on that flight
+        ReservationEntity existingReservation = reservationRepository.findByFlightAndSeatNumber(flight, seatNumber);
+        return existingReservation == null;
+    }
+
     private boolean isReservationTimeValid(ReservationEntity reservationEntity) {
         FlightEntity flight = reservationEntity.getFlight();
         if (flight != null) {
-            // Obtener la fecha y hora actual
+            // Get the current date and time
             LocalDateTime currentTime = LocalDateTime.now();
 
-            // Obtener la fecha y hora de salida del vuelo
+            // Get the flight departure date and time
             LocalDateTime flightDepartureTime = flight.getDepartureDate();
 
-            // Calcular la diferencia de tiempo en milisegundos
+            // Calculate the time difference in milliseconds
             long timeDifference = Duration.between(currentTime, flightDepartureTime).toMillis();
 
-            // Comprobar que la diferencia sea mayor de 3 horas (en milisegundos)
+            // Check that the difference is greater than 3 hours (in milliseconds)
             if (timeDifference > 3 * 60 * 60 * 1000) {
                 reservationEntity.setReservationDate(currentTime);
                 return true;
