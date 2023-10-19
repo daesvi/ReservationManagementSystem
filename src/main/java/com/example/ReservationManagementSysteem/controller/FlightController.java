@@ -37,5 +37,15 @@ public class FlightController {
         ArrayList<FlightEntity> listFlights = flightService.getAllFlights();
         return ResponseEntity.status(HttpStatus.FOUND).body(listFlights);
     }
+
+    @GetMapping ("/{id}")
+    public ResponseEntity<?> getFlightById(@PathVariable Long id){
+        try {
+            FlightEntity foundFlight = flightService.getFlightById(id);
+            return ResponseEntity.status(HttpStatus.CREATED).body(foundFlight);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }
 

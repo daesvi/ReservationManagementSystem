@@ -54,7 +54,13 @@ public class FlightService {
 
     public FlightEntity getFlightById(Long id) {
         // Get a flight for your ID.
-        return flightRepository.findById(id).orElse(null);
+        FlightEntity foundFlight = flightRepository.findById(id).orElse(null);
+        if (foundFlight != null){
+            return foundFlight;
+        }else {
+            throw new IllegalArgumentException("El vuelo con el id " + id + " no existe");
+        }
+
     }
 
     public FlightEntity updateFlight(FlightEntity flightEntity) {
