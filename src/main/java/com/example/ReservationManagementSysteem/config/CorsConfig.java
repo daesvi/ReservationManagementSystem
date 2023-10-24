@@ -10,10 +10,11 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // Remote URL Swagger
+                .allowedOrigins("https://reservationmanagementsystem-production.up.railway.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization")
                 .allowCredentials(true);
     }
 }
+
 
