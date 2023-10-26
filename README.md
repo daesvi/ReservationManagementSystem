@@ -1,23 +1,49 @@
-# ReservationManagementSystem
+# Reservation Management System
 
-This is a reservationEntity management system project that allows airlines to:
-1. Manage flights
-2. Search flights by search criteria
-3. Book a flightEntity
-4. Allow search by stopovers on flights
-5. Implement Authentication in the REST API
+Welcome to the Reservation Management System, a project that allows you to manage flights, search for flights based on specific criteria and facilitate flight reservations. In addition, it allows the creation of airlines and user profiles.
 
-This project is developed using the following technologies and tools:
+---
+## Table of Contents
+
+- [Reservation Management System](#reservation-management-system)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Members](#members)
+- [Documentation](#documentation)
+- [License](#license)
+
+
+---
+## Technologies
 
 - Java for the backend.
-- Spring Framework for dependency and configuration management.
+- Spring Framework.
 - MySQL database for data storage.
-- HTML, CSS and JavaScript for the frontend.
 - Maven for dependency management.
-- Swagger.
+- Swagger for documentation.
+- JUnit and Mockito for unit testing.
+- Railway for deployment.
+---
+## Features
 
-Members:
+- Flight management.
+- Flight search based on criteria.
+- Flight reservation.
+- Airlines creation.
+- User creation.
 
-Jefferson Naranjo Rodriguez,
-Elkin Daza,
-Daniel Estiven Villegas Bedoya.
+
+---
+## Members
+
+- [Daniel Estiven Villegas Bedoya](https://github.com/daesvi)
+- [Jefferson Naranjo Rodriguez](https://github.com/Jefferj)
+
+---
+## Documentation
+- [Swagger Documentation](https://reservationmanagementsystem-production.up.railway.app/swagger-ui/index.html#/)
+
+---
+## License
+
+This project is licensed under the [MIT License](LICENSE).
