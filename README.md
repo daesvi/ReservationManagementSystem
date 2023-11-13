@@ -36,7 +36,7 @@ Welcome to the Reservation Management System, a project that allows you to manag
 ---
 ## Members
 
-- [Daniel Estiven Villegas Bedoya](https://github.com/daesvi)
+- [Daniel Estiven Villegas Bedoya](https://www.linkedin.com/in/daesvi/)
 - [Jefferson Naranjo Rodriguez](https://github.com/Jefferj)
 
 ---
